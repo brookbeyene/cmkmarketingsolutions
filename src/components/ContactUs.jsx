@@ -18,11 +18,13 @@ const Contact = () => {
       .then(
         () => {
           console.log("SUCCESS!");
+          from.current.reset();
         },
         (error) => {
           console.log("FAILED...", error.text);
         }
       );
+
   }
   return (
     <div className="bg-black text-white py-20" id="contact">
