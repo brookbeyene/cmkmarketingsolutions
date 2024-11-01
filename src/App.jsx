@@ -3,7 +3,6 @@ import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
 import Navbar from './components/Navbar'
-import Emails from './components/Home'
 import WhyUS from './components/WhyUS'
 import Contact from './components/ContactUs'
 import Service from './components/Service'
@@ -25,7 +24,7 @@ function App() {
       <Service />
       <WhyUS />
       <Contact />
-      <Emails />
+      
       
     </>
   );

@@ -1,9 +1,29 @@
-import React from "react";
+import React, { useRef } from "react";
 import { FaEnvelope, FaMapMarkedAlt, FaPhone } from "react-icons/fa";
 import logo from "../assets/logo.png";
 import Logo from "../assets/cmkLogo.png";
+import emailjs from "@emailjs/browser";
 
 const Contact = () => {
+  const from = useRef();
+  const sendEmail = (e) => {
+    e.preventDefault();
+    emailjs
+      .sendForm(
+        YOUR_SERVICE_ID,
+        YOUR_TEMPLATE_ID,
+        from.current,
+        YOUR_PUBLIC_KEY
+      )
+      .then(
+        () => {
+          console.log("SUCCESS!");
+        },
+        (error) => {
+          console.log("FAILED...", error.text);
+        }
+      );
+  }
   return (
     <div className="bg-black text-white py-20" id="contact">
       <div className="container mx-auto px-8 md:px-16 lg:px-24">
@@ -44,7 +64,7 @@ const Contact = () => {
             </div>
           </div>
           <div className="flex-1 w-full">
-            <form className="space-y-4">
+            <form className="space-y-4" ref={from} onSubmit={sendEmail}>
               <div>
                 <label htmlFor="name" className="block mb-2">
                   Your Name
@@ -54,6 +74,7 @@ const Contact = () => {
                   className="w-full p-2 rounded bg-gray-800 border border-gray-600 focus:outline-none
                     focus:border-green-400"
                   placeholder="Enter You Name"
+                  name="from_name"
                 />
               </div>
               <div>
@@ -65,6 +86,7 @@ const Contact = () => {
                   className="w-full p-2 rounded bg-gray-800 border border-gray-600 focus:outline-none
                     focus:border-green-400"
                   placeholder="Enter You Email"
+                  name="from_email"
                 />
               </div>
               <div>
@@ -77,6 +99,7 @@ const Contact = () => {
                     focus:border-green-400"
                   rows="5"
                   placeholder="Enter You Message"
+                  name="message"
                 />
               </div>
               <button
